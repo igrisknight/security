@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Question</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .popup h2 {
+      margin-bottom: 15px;
+    }
+    .popup button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .popup button:hover {
+      opacity: 0.8;
+    }
+    .yes-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+    .no-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    .heart-animation {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .heart {
+      font-size: 100px;
+      color: red;
+      animation: beat 1s infinite;
+    }
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="popup" id="popup">
+    <h2 id="question">Do you love your boyfriend?</h2>
+    <button class="yes-btn" onclick="handleYes()">Yes</button>
+    <button class="no-btn" onclick="handleNo()">No</button>
+  </div>
+  <div class="heart-animation" id="heartAnimation">
+    <div class="heart">❤️</div>
+    <h2>I Love You</h2>
+  </div>
+
+  <script>
+    let currentQuestion = 1;
+
+    function handleYes() {
+      if (currentQuestion === 1) {
+        // Move to the second question
+        document.getElementById("question").innerText = "Does he love you?";
+        currentQuestion = 2;
+      } else if (currentQuestion === 2) {
+        // Show heart animation
+        document.getElementById("popup").style.display = "none";
+        document.querySelector(".overlay").style.display = "none";
+        document.getElementById("heartAnimation").style.display = "block";
+      }
+    }
+
+    function handleNo() {
+      // Repeat the same question
+      alert("Think again!");
+    }
+  </script>
+</body>
+</html>
